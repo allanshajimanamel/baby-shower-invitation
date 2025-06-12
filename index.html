@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annie's Baby Shower Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background-image: url('baby-shower-background-min.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: #333;
+            overflow-x: hidden;
+            /* Optional: Add a subtle overlay to ensure text readability */
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Decorative teddy bear elements */
+        .teddy-decoration {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: #8B4513;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .teddy-decoration:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .teddy-decoration:nth-child(2) { top: 20%; right: 8%; animation-delay: 2s; }
+        .teddy-decoration:nth-child(3) { bottom: 15%; left: 10%; animation-delay: 4s; }
+        .teddy-decoration:nth-child(4) { bottom: 25%; right: 5%; animation-delay: 1s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 3px solid #4682B4;
+            position: relative;
+        }
+
+        .header::before {
+            content: "🧸";
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            background: white;
+            padding: 0 15px;
+            border-radius: 50%;
+        }
+
+        .main-title {
+            font-size: 2.5rem;
+            color: #8B4513;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #4682B4;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .date-time {
+            font-size: 1.2rem;
+            color: #8B4513;
+            font-weight: bold;
+            background: #E6F3FF;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 5px solid #4682B4;
+        }
+
+        .tiles-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .tile {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 2px solid #4682B4;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .tile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #E6F3FF;
+        }
+
+        .tile-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #4682B4;
+        }
+
+        .tile-title {
+            font-size: 1.4rem;
+            color: #8B4513;
+            font-weight: bold;
+        }
+
+        .weather-info {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .weather-temp {
+            font-size: 3rem;
+            color: #4682B4;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .weather-desc {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .weather-detail {
+            background: #E6F3FF;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .map-container {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+            border: 2px solid #4682B4;
+        }
+
+        .location-info {
+            background: #E6F3FF;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .location-address {
+            font-size: 1.1rem;
+            color: #8B4513;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .location-note {
+            color: #666;
+            font-style: italic;
+        }
+
+        .registry-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #4682B4, #87CEEB);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(70, 130, 180, 0.3);
+            margin-top: 15px;
+            text-align: center;
+            display: block;
+        }
+
+        .registry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(70, 130, 180, 0.4);
+            background: linear-gradient(45deg, #5a9bd4, #a0d8ef);
+        }
+
+        .registry-note {
+            text-align: center;
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .main-title {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .date-time {
+                font-size: 1rem;
+            }
+
+            .tiles-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .tile {
+                padding: 20px;
+            }
+
+            .weather-temp {
+                font-size: 2.5rem;
+            }
+
+            .teddy-decoration {
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 25px 20px;
+            }
+
+            .main-title {
+                font-size: 1.8rem;
+            }
+
+            .tile-title {
+                font-size: 1.2rem;
+            }
+
+            .weather-temp {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading animation for weather */
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 20px;
+        }
+
+        .loading::after {
+            content: "...";
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="teddy-decoration"></div>
+    <div class="teddy-decoration"></div>
+    <div class="teddy-decoration"></div>
+    <div class="teddy-decoration"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1 class="main-title">Annie's Baby Shower</h1>
+            <p class="subtitle">We are super excited to invite you to celebrate the upcoming arrival of our little one!<br />
+                Come join us for a fun Baby Shower in honor of Annie.</p>
+            <div class="date-time">
+                📅 Saturday, July 26th, 2025<br>
+                🕐 12:00 PM<br>
+            </div>
+        </div>
+
+        <div class="tiles-container">
+            <!-- Location Tile -->
+            <div class="tile">
+                <div class="tile-header">
+                    <div class="tile-icon">📍</div>
+                    <h2 class="tile-title">Event Location</h2>
+                </div>
+                <div class="location-info">
+                    <div class="location-address">462 Ebi Way<br>Folsom, California 95630</div>
+                    <div class="location-note">Click the map for directions</div>
+                </div>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3115.7212959147187!2d-121.16802082272794!3d38.65528826095116!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x809ae426750d7d0d%3A0x23f438d2a38769a9!2s462%20Ebi%20Way%2C%20Folsom%2C%20CA%2095630!5e0!3m2!1sen!2sus!4v1749754222515!5m2!1sen!2sus" 
+                    width="600" 
+                    height="450" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+                </div>
+            </div>
+
+            <!-- Registry Tile -->
+            <div class="tile">
+                <div class="tile-header">
+                    <div class="tile-icon">🎁</div>
+                    <h2 class="tile-title">Baby Registry</h2>
+                </div>
+                <p style="margin-bottom: 15px; color: #666; text-align: center;">
+                    Help us welcome our little teddy bear with gifts from our registry!
+                </p>
+                <a href="https://my.babylist.com/annie-lezil" class="registry-button" id="registry-link">
+                    🧸 View Baby Registry
+                </a>
+                <div class="registry-note">
+                    Your love and presence are the greatest gifts ❤️
+                </div>
+            </div>
+
+            <!-- Weather Tile -->
+            <div class="tile">
+                <div class="tile-header">
+                    <div class="tile-icon">🌤️</div>
+                    <h2 class="tile-title">Weather Forecast</h2>
+                </div>
+                <div id="weather-content" class="weather-info">
+                    <div class="loading">Loading weather for Folsom, CA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Weather API functionality
+        async function loadWeather() {
+            try {
+                const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Folsom,CA,US&appid=10eebd38cbe8e91a4851c1ed3b6706fc&units=imperial');
+                if (!response.ok) {
+                    throw new Error('Weather service unavailable');
+                }
+                const data = await response.json();
+                displayWeather(data);
+            } catch (error) {
+                displayWeatherFallback();
+            }
+        }
+
+        function displayWeather(data) {
+            try {
+                const temp = Math.round(data.main.temp);
+                const description = data.weather[0].description;
+                const humidity = data.main.humidity;
+                const windSpeed = Math.round(data.wind.speed);
+
+                const weatherContent = document.getElementById('weather-content');
+                weatherContent.innerHTML = `
+                <div class="weather-temp">${temp}°F</div>
+                <div class="weather-desc">${description.charAt(0).toUpperCase() + description.slice(1)}</div>
+                <div class="weather-details">
+                    <div class="weather-detail">
+                        <strong>Humidity</strong><br>${humidity}%
+                    </div>
+                    <div class="weather-detail">
+                        <strong>Wind</strong><br>${windSpeed} mph
+                    </div>
+                </div>
+            `;
+            } catch (error) {
+                displayWeatherFallback();
+            }
+        }
+
+        function displayWeatherFallback() {
+            const weatherContent = document.getElementById('weather-content');
+            weatherContent.innerHTML = `
+                <div class="weather-temp">75°F - 95°F</div>
+                <div class="weather-desc">Perfect weather for a baby shower!</div>
+                <div class="weather-details">
+                    <div class="weather-detail">
+                        <strong>Expected</strong><br>Sunny & Warm
+                    </div>
+                    <div class="weather-detail">
+                        <strong>Perfect for</strong><br>Celebration!
+                    </div>
+                </div>
+                <div style="margin-top: 15px; font-size: 0.9rem; color: #666; font-style: italic;">
+                    *Weather forecast will be updated closer to the date
+                </div>
+            `;
+        }
+
+        // Initialize weather
+        loadWeather();
+    </script>
+</body>
+</html>
